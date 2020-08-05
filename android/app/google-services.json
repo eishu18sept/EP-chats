@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "59069045086",
+    "firebase_url": "https://ep-chats.firebaseio.com",
+    "project_id": "ep-chats",
+    "storage_bucket": "ep-chats.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59069045086:android:e0b34ed09e2cc3b6c857cf",
+        "android_client_info": {
+          "package_name": "co.eishupal.EP_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "59069045086-9uhrddjue9gljh8ao3kna4c833h5mv33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr5w0wyL9ypCRqc3m4wZ2qfSje8RCr9L4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "59069045086-9uhrddjue9gljh8ao3kna4c833h5mv33.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

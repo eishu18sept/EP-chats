@@ -1,15 +1,50 @@
+import 'package:EP_chat/screens/login_screen.dart';
+import 'package:EP_chat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+
 
 class WelcomeScreen extends StatefulWidget {
+  static String id = 'welcome_screen';
+
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin {
+
+  AnimationController controller;
+  Animation animation;
+   @override
+  void initState() {
+    super.initState();
+    controller =  AnimationController(
+      duration: Duration(seconds:1),
+      vsync: this,
+    );
+
+    animation = CurvedAnimation(
+      parent: controller ,
+      curve: Curves.decelerate ,
+    );
+
+    controller.forward();
+    controller.addListener(() {
+      setState(() {});
+      print(animation.value);
+    });
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.lightBlueAccent,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -18,15 +53,22 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                Container(
-                  child: Image.asset('images/logo.png'),
-                  height: 60.0,
+                Hero(
+                    tag: 'logo',
+                    child: Container(
+                    alignment: Alignment.center,
+                    child: Image.asset('images/logo.png'),
+                    height: 100.0,  // use animation.value * 75, to animate logo
+                    margin: EdgeInsets.fromLTRB(10.0,10.0,20.0,10.0),
+                  ),
                 ),
-                Text(
-                  'Flash Chat',
-                  style: TextStyle(
-                    fontSize: 45.0,
+                TypewriterAnimatedTextKit(
+                  text : ['EP Chats'],
+                  textStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 35.0,
                     fontWeight: FontWeight.w900,
+                    fontStyle: FontStyle.italic,
                   ),
                 ),
               ],
@@ -38,16 +80,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
                 elevation: 5.0,
-                color: Colors.lightBlueAccent,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
                   onPressed: () {
-                    //Go to login screen.
+                    Navigator.pushNamed(context, LoginScreen.id);
                   },
                   minWidth: 200.0,
                   height: 42.0,
                   child: Text(
                     'Log In',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
                   ),
                 ),
               ),
@@ -55,17 +101,21 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Material(
-                color: Colors.blueAccent,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(30.0),
                 elevation: 5.0,
                 child: MaterialButton(
                   onPressed: () {
-                    //Go to registration screen.
+                    Navigator.pushNamed(context, RegistrationScreen.id);
                   },
                   minWidth: 200.0,
                   height: 42.0,
                   child: Text(
                     'Register',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.0,
+                    ),
                   ),
                 ),
               ),
